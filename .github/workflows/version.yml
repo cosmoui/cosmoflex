@@ -8,7 +8,7 @@ on:
       - "features/*"
       - "hotfixs/*"
       - "releases/*"
-      - "bugfix/*"
+      - "bugfixs/*"
 
 jobs:
   update-version:
@@ -27,7 +27,7 @@ jobs:
             VERSION=$(node -p "require('./package.json').version")
           elif [[ $BRANCH_NAME == "develop" ]]; then
             VERSION=$(node -p "require('./package.json').version")-beta-$(date +%s)
-          elif [[ $BRANCH_NAME == "features/"* || $BRANCH_NAME == "hotfix/"* ]]; then
+          elif [[ $BRANCH_NAME == "features/"* || $BRANCH_NAME == "hotfixs/"* ]]; then
             VERSION=$(node -p "require('./package.json').version")-alpha-$(date +%s)
           elif [[ $BRANCH_NAME == "releases/"* ]]; then
             VERSION=$(node -p "require('./package.json').version")-rc-$(date +%s)
