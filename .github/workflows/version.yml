@@ -33,8 +33,9 @@ jobs:
             VERSION=$(node -p "require('./package.json').version")-rc-$(date +%s)
           fi
           echo "VERSION=$VERSION" >> $GITHUB_ENV
-      - name: Update Version
+      - name: Set Yarn Configuration
         run: yarn config set version-sign-git-tag false
+      - name: Update Version
         run: yarn version --new-version ${{ env.VERSION }}
       - run: ls
       - run: cat package.json
