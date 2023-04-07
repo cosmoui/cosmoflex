@@ -18,6 +18,7 @@ jobs:
           node-version: lts/*
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
+        run: ls
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
