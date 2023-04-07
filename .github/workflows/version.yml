@@ -1,0 +1,35 @@
+name: Version
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+      - "features/*"
+      - "hotfixs/*"
+      - "releases/*"
+      - "bugfix/*"
+
+jobs:
+  update-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: lts/*
+      - name: Set Version
+        run: |
+          BRANCH_NAME=${GITHUB_REF#refs/heads}
+          if [[ $BANCH_NAME == "master" ]]; then VERSION=$(node -p "require('./package.json').version")
+          elif [[ $BANCH_NAME == "develop"]]; then VERSION=$(node -p "require('./package.json').version")-beta-$(date +%s)
+          elif [[ $BANCH_NAME == "features/*" || $BANCH_NAME == "hotfixs/*" ]]; then VERSION=$(node -p "require('./package.json').version")-alpha-$(date +%s)
+          elif [[ $BANCH_NAME == "releases/*"]]; then VERSION=$(node -p "require('./package.json').version")-rc-$(date +%s)
+          fi
+          echo "VERSION=$VERSION" >> GITHUB_ENV
+      - name: Update Version
+        run: yarn version --no-git-tag-version ${{ env.VERSION }}
+      - run: ls
+      - run: cat package.json

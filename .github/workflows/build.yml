@@ -7,7 +7,16 @@ on:
       - "features/**"
 
 jobs:
+  stages:
+    - version
+    - build
+
+  include:
+    - local: ./version.yml
+
   build:
+    needs:
+      - jobs: version
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
