@@ -13,7 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Setup NodeJS
-        uses: actions/setup-nodejs@v3
+        uses: actions/setup-node@v3
         with:
           node-version: lts
       - name: Install Dependencies
@@ -30,7 +30,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Setup NodeJS
-        uses: actions/setup-nodejs@v3
+        uses: actions/setup-node@v3
         with:
           node-version: lts
       - name: Download Artifact
