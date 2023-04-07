@@ -34,6 +34,6 @@ jobs:
           fi
           echo "VERSION=$VERSION" >> $GITHUB_ENV
       - name: Update Version
-        run: yarn version --no-git-tag-version ${{ env.VERSION }}
+        run: yarn version --new-version ${{ env.VERSION }}
       - run: ls
       - run: cat package.json
