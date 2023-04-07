@@ -1,0 +1,9 @@
+{
+  "name": "cosmoflex",
+  "version": "0.0.1",
+  "description": "CosmoFlex, a sleek and versatile CSS framework for responsive websites and mobile apps. Designed for a seamless development experience and stunning results.",
+  "main": "index.js",
+  "author": "Massinissa Amalou",
+  "license": "MIT",
+  "private": false
+}
