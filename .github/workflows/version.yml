@@ -22,13 +22,17 @@ jobs:
           node-version: lts/*
       - name: Set Version
         run: |
-          BRANCH_NAME=${GITHUB_REF#refs/heads}
-          if [[ $BANCH_NAME == "master" ]]; then VERSION=$(node -p "require('./package.json').version")
-          elif [[ $BANCH_NAME == "develop"]]; then VERSION=$(node -p "require('./package.json').version")-beta-$(date +%s)
-          elif [[ $BANCH_NAME == "features/*" || $BANCH_NAME == "hotfixs/*" ]]; then VERSION=$(node -p "require('./package.json').version")-alpha-$(date +%s)
-          elif [[ $BANCH_NAME == "releases/*"]]; then VERSION=$(node -p "require('./package.json').version")-rc-$(date +%s)
+          BRANCH_NAME=${GITHUB_REF#refs/heads/}
+          if [[ $BRANCH_NAME == "master" ]]; then
+            VERSION=$(node -p "require('./package.json').version")
+          elif [[ $BRANCH_NAME == "develop" ]]; then
+            VERSION=$(node -p "require('./package.json').version")-beta-$(date +%s)
+          elif [[ $BRANCH_NAME == "features/"* || $BRANCH_NAME == "hotfix/"* ]]; then
+            VERSION=$(node -p "require('./package.json').version")-alpha-$(date +%s)
+          elif [[ $BRANCH_NAME == "releases/"* ]]; then
+            VERSION=$(node -p "require('./package.json').version")-rc-$(date +%s)
           fi
-          echo "VERSION=$VERSION" >> GITHUB_ENV
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
       - name: Update Version
         run: yarn version --no-git-tag-version ${{ env.VERSION }}
       - run: ls
