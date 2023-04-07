@@ -1,12 +1,16 @@
 {
   "name": "@cosmoui/cosmoflex",
-  "version": "0.0.1",
+  "version": "0.0.1-alpha-1680910169",
   "description": "CosmoFlex, a sleek and versatile CSS framework for responsive websites and mobile apps. Designed for a seamless development experience and stunning results.",
   "main": "dist/index.min.css",
   "author": "Massinissa Amalou",
   "license": "MIT",
   "private": false,
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cosmoui/cosmoflex.git"
+  },
   "files": [
     "dist"
   ],
