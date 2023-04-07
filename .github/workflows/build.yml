@@ -1,9 +1,10 @@
-name: Publish
+name: Build
 
 on:
   push:
     branches:
-      - master
+      - develop
+      - "features/**"
 
 jobs:
   build:
@@ -20,10 +21,10 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: cosomoflex-artifact
+          name: cosomoflex-artifact-dev
           path: dist
 
-  publish:
+  check-artifact:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -35,7 +36,4 @@ jobs:
       - name: Download Artifact
         uses: actions/download-artifact@v3
         with:
-          name: cosmoflex-artifact
-      - run: yarn publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+          name: cosmoflex-artifact-dev
