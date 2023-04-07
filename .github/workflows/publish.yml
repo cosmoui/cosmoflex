@@ -14,7 +14,7 @@ jobs:
       - name: Setup NodeJS
         uses: actions/setup-node@v3
         with:
-          node-version: lts
+          node-version: lts/*
       - name: Install Dependencies
         run: yarn ci
       - name: Upload Artifact
@@ -31,7 +31,7 @@ jobs:
       - name: Setup NodeJS
         uses: actions/setup-node@v3
         with:
-          node-version: lts
+          node-version: lts/*
       - name: Download Artifact
         uses: actions/download-artifact@v3
         with:
