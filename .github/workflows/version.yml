@@ -2,7 +2,7 @@
 name: Version
 
 on:
-  workflow_dispatch:
+  push:
     branches:
       - master
       - develop
@@ -10,6 +10,7 @@ on:
       - "hotfixs/*"
       - "releases/*"
       - "bugfixs/*"
+
 
 jobs:
   update-version:
