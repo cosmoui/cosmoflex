@@ -22,8 +22,11 @@ jobs:
           node-version: lts/*
       - name: Get last commit author
         run: |
-          LAST_COMMIT_AUTHOR=$(git log -1 --pretty=format:"%an <%ae>")
-          echo "Last commit author: $LAST_COMMIT_AUTHOR"
+          LAST_COMMIT=$(git log -1 --pretty=format:"%an|%ae")
+          LAST_COMMIT_NAME=$(echo $LAST_COMMIT | cut -d '|' -f1)
+          LAST_COMMIT_EMAIL=$(echo $LAST_COMMIT | cut -d '|' -f2)
+          echo "Last commit author name: $LAST_COMMIT_NAME"
+          echo "Last commit author email: $LAST_COMMIT_EMAIL"
       - name: Set Version
         run: |
           BRANCH_NAME=${GITHUB_REF#refs/heads/}
