@@ -3,16 +3,8 @@ name: Build
 on:
   workflow_run:
     workflow: [Version]
-    types:
-      - completed
-  push:
-    branches:
-      - develop
-      - "features/*"
-      - "hotfixs/*"
-      - "releases/*"
-      - "bugfixs/*"
-
+    types: [completed]
+    branches: [develop, "features/*", "hotfixs/*", "releases/*", "bugfixs/*"]
 
 jobs:
   dependencies:
