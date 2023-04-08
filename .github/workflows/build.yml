@@ -11,27 +11,13 @@ on:
       - "bugfixs/*"
 
 jobs:
-  version:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Version dependencies
-        uses: ./.github/workflows/version.yml
-      - name: Uppload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: cosomoflex-artifact
-          path: ./
   build:
-    needs:
-      - jobs: version
     runs-on: ubuntu-latest
     steps:
-      # - name: Version dependencies
-      #   uses: ./.github/workflows/version.yml
-      # - name: Download artifacts
-      #   uses: actions/download-artifacts@v3
-      #   with:
-      #     name: cosmoflex-artifact
+      - name: Get workflow version
+        uses: actions/workflow-dispatch@v3
+        with:
+          workflow: version.yml
       - name: Setup NodeJS
         uses: actions/setup-node@v3
         with:
@@ -43,5 +29,5 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: cosmoflex-dist
+          name: cosmoflex-artifact-dev
           path: dist
