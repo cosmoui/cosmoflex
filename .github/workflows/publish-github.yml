@@ -10,7 +10,16 @@ on:
       - "bugfixs/*"
 
 jobs:
+  dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get workflow build
+        uses: actions/workflow-dispatch@v3
+        with:
+          workflow: buil.yml
+
   publish:
+    need: dependencies
     runs-on: ubuntu-latest
     need: build
     steps:

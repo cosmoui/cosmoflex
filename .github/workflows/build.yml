@@ -11,13 +11,17 @@ on:
       - "bugfixs/*"
 
 jobs:
-  build:
+  dependencies:
     runs-on: ubuntu-latest
     steps:
       - name: Get workflow version
         uses: actions/workflow-dispatch@v3
         with:
           workflow: version.yml
+  build:
+    need: dependencies
+    runs-on: ubuntu-latest
+    steps:
       - name: Setup NodeJS
         uses: actions/setup-node@v3
         with:
