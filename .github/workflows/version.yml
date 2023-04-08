@@ -1,15 +1,15 @@
 # TODO: Fix CI/CD with incremental version number depending on branch and list of existing deployed versions
 name: Version
 
-# on:
-#   push:
-#     branches:
-#       - master
-#       - develop
-#       - "features/*"
-#       - "hotfixs/*"
-#       - "releases/*"
-#       - "bugfixs/*"
+on:
+  push:
+    branches:
+      - master
+      - develop
+      - "features/*"
+      - "hotfixs/*"
+      - "releases/*"
+      - "bugfixs/*"
 
 jobs:
   update-version:
@@ -66,4 +66,6 @@ jobs:
           echo "VERSION=$VERSION" >> $GITHUB_ENV
       - name: Update Version
         run: yarn version --new-version ${{ env.VERSION }}
+      - name: Update Repository Version
+        run: git add . && git commit -m "update version" && git push
       - run: cat package.json
