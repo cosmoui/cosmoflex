@@ -1,7 +1,11 @@
 name: Publish NPM
 
 on:
-  push:
+  workflow_run:
+    workflows:
+      - "Build"
+    types:
+      - completed
     branches:
       - master
 

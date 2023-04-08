@@ -2,10 +2,11 @@ name: Build
 
 on:
   workflow_run:
-    workflows: # Changez "workflow" en "workflows"
+    workflows:
       - "Version"
     types:
       - completed
+  push:
     branches:
       - develop
       - "features/*"
@@ -14,19 +15,11 @@ on:
       - "bugfixs/*"
 
 jobs:
-  dependencies:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Get workflow version
-        uses: actions/workflow-dispatch@v3
-        with:
-          workflow: version.yml
-  build:
-    needs: dependencies
-    runs-on: ubuntu-latest
-    steps:
       - name: Setup NodeJS
         uses: actions/setup-node@v3
         with:
