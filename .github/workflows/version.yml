@@ -2,7 +2,7 @@
 name: Version
 
 on:
-  push:
+  workflow_dispatch:
     branches:
       - master
       - develop
