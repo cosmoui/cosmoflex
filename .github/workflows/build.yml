@@ -12,6 +12,7 @@ on:
 
 jobs:
   dependencies:
+    need: update-version
     runs-on: ubuntu-latest
     steps:
       - name: Get workflow version
