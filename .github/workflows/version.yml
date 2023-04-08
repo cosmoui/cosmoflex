@@ -25,8 +25,10 @@ jobs:
           LAST_COMMIT=$(git log -1 --pretty=format:"%an|%ae")
           LAST_COMMIT_NAME=$(echo $LAST_COMMIT | cut -d '|' -f1)
           LAST_COMMIT_EMAIL=$(echo $LAST_COMMIT | cut -d '|' -f2)
-          echo "Last commit author name: $LAST_COMMIT_NAME"
-          echo "Last commit author email: $LAST_COMMIT_EMAIL"
+      - name: Set Git Configuration
+        run: |
+          git config --global user.name "$LAST_COMMIT_NAME"
+          git config --global user.email "$LAST_COMMIT_EMAIL"
       - name: Set Version
         run: |
           BRANCH_NAME=${GITHUB_REF#refs/heads/}
