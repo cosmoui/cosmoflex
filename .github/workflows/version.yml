@@ -29,6 +29,7 @@ jobs:
         run: |
           git config --global user.name "$LAST_COMMIT_NAME"
           git config --global user.email "$LAST_COMMIT_EMAIL"
+          git config --global --list
       - name: Set Version
         run: |
           BRANCH_NAME=${GITHUB_REF#refs/heads/}
