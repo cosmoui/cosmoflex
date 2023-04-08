@@ -19,7 +19,7 @@ jobs:
           workflow: buil.yml
 
   publish:
-    need: dependencies
+    needs: dependencies
     runs-on: ubuntu-latest
     need: build
     steps:

@@ -19,7 +19,7 @@ jobs:
         with:
           workflow: version.yml
   build:
-    need: dependencies
+    needs: dependencies
     runs-on: ubuntu-latest
     steps:
       - name: Setup NodeJS
