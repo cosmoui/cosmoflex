@@ -11,6 +11,8 @@ on:
 
 jobs:
   publish:
+    needs:
+    - jobs: build
     runs-on: ubuntu-latest
     steps:
       - name: Download Artifact
