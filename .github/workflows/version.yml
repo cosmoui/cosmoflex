@@ -29,6 +29,7 @@ jobs:
           echo "Last commit author email: $LAST_COMMIT_EMAIL"
       - name: Display variables
         run: |
+          echo ${{ env }}
           echo "LAST_COMMIT_NAME: $LAST_COMMIT_NAME"
           echo "LAST_COMMIT_EMAIL: $LAST_COMMIT_EMAIL"
       - name: Set Git Configuration
