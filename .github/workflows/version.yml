@@ -38,32 +38,31 @@ jobs:
           if [[ $BRANCH_NAME == "master" ]]; then
             VERSION=$CURRENT_VERSION
           elif [[ $BRANCH_NAME == "develop" ]]; then
-            if $CURRENT_VERSION | grep -q -- "-beta-"; then
+            if echo "$CURRENT_VERSION" | grep -q -- "-beta-"; then
               LAST_VERSION_SUFFIX=$(echo $CURRENT_VERSION | cut -d '-' -f3)
               NEXT_VERSION_SUFFIX=$((LAST_VERSION_SUFFIX + 1))
               VERSION=$(echo $CURRENT_VERSION | sed "s/-beta-$LAST_VERSION_SUFFIX$/-beta-$NEXT_VERSION_SUFFIX/")
-            elif
-              VERSION="${$CURRENT_VERSION}-beta-1"
+            else
+              VERSION="${CURRENT_VERSION}-beta-1"
             fi
           elif [[ $BRANCH_NAME == "features/"* || $BRANCH_NAME == "hotfixs/"* ]]; then
-            if $CURRENT_VERSION | grep -q -- "-alpha-"; then
+            if echo "$CURRENT_VERSION" | grep -q -- "-alpha-"; then
               LAST_VERSION_SUFFIX=$(echo $CURRENT_VERSION | cut -d '-' -f3)
               NEXT_VERSION_SUFFIX=$((LAST_VERSION_SUFFIX + 1))
               VERSION=$(echo $CURRENT_VERSION | sed "s/-alpha-$LAST_VERSION_SUFFIX$/-alpha-$NEXT_VERSION_SUFFIX/")
-            elif
-              VERSION="${$CURRENT_VERSION}-alpha-1"
+            else
+              VERSION="${CURRENT_VERSION}-alpha-1"
             fi
           elif [[ $BRANCH_NAME == "releases/"* ]]; then
-            if $CURRENT_VERSION | grep -q -- "-rc-"; then
+            if echo "$CURRENT_VERSION" | grep -q -- "-rc-"; then
               LAST_VERSION_SUFFIX=$(echo $CURRENT_VERSION | cut -d '-' -f3)
               NEXT_VERSION_SUFFIX=$((LAST_VERSION_SUFFIX + 1))
               VERSION=$(echo $CURRENT_VERSION | sed "s/-rc-$LAST_VERSION_SUFFIX$/-rc-$NEXT_VERSION_SUFFIX/")
-            elif
-              VERSION="${$CURRENT_VERSION}-rc-1"
+            else
+              VERSION="${CURRENT_VERSION}-rc-1"
             fi
           fi
           echo "VERSION=$VERSION" >> $GITHUB_ENV
       - name: Update Version
         run: yarn version --new-version ${{ env.VERSION }}
-      - run: ls
       - run: cat package.json
