@@ -10,6 +10,11 @@ on:
       - "bugfixs/*"
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build dependencies
+        uses: ./.github/workflows/build.yml
   publish:
     needs:
     - jobs: build
@@ -25,6 +30,6 @@ jobs:
           node-version: lts/*
           scope: ${{github.repository_owner}}
           registry-url: https://npm.pkg.github.com/
-      - run: yarn publish
+      # - run: yarn publish
         # env:
         # NODE_AUTH_TOKEN: ${{secrets.npm_token}}
