@@ -25,6 +25,10 @@ jobs:
           LAST_COMMIT=$(git log -1 --pretty=format:"%an|%ae")
           LAST_COMMIT_NAME=$(echo $LAST_COMMIT | cut -d '|' -f1)
           LAST_COMMIT_EMAIL=$(echo $LAST_COMMIT | cut -d '|' -f2)
+      - name: Display variables
+        run: |
+          echo "LAST_COMMIT_NAME: $LAST_COMMIT_NAME"
+          echo "LAST_COMMIT_EMAIL: $LAST_COMMIT_EMAIL"
       - name: Set Git Configuration
         run: |
           git config --global user.name "$LAST_COMMIT_NAME"
