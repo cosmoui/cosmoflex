@@ -25,17 +25,16 @@ jobs:
           LAST_COMMIT=$(git log -1 --pretty=format:"%an|%ae")
           LAST_COMMIT_NAME=$(echo $LAST_COMMIT | cut -d '|' -f1)
           LAST_COMMIT_EMAIL=$(echo $LAST_COMMIT | cut -d '|' -f2)
-          echo "Last commit author name: $LAST_COMMIT_NAME"
-          echo "Last commit author email: $LAST_COMMIT_EMAIL"
+          echo "COMMIT_NAME=$LAST_COMMIT_NAME" >> $GITHUB_ENV
+          echo "COMMIT_EMAIL=$LAST_COMMIT_EMAIL" >> $GITHUB_ENV
       - name: Display variables
         run: |
-          echo ${{ env }}
-          echo "LAST_COMMIT_NAME: $LAST_COMMIT_NAME"
-          echo "LAST_COMMIT_EMAIL: $LAST_COMMIT_EMAIL"
+          echo  ${{ env.COMMIT_NAME }}
+          echo  ${{ env.COMMIT_EMAIL }}
       - name: Set Git Configuration
         run: |
-          git config --global user.name "$LAST_COMMIT_NAME"
-          git config --global user.email "$LAST_COMMIT_EMAIL"
+          git config --global user.name ${{ env.COMMIT_NAME }}
+          git config --global user.email ${{ env.COMMIT_EMAIL }}
           git config --global --list
       - name: Set Version
         run: |
