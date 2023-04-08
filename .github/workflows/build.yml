@@ -1,14 +1,16 @@
 name: Build
 
 on:
-  push:
+  workflow_run:
+    workflow: ["Version"]
     branches:
-      - master
       - develop
       - "features/*"
       - "hotfixs/*"
       - "releases/*"
       - "bugfixs/*"
+    types:
+      - completed
 
 jobs:
   dependencies:
