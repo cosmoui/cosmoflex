@@ -27,27 +27,30 @@ jobs:
           LAST_COMMIT_EMAIL=$(echo $LAST_COMMIT | cut -d '|' -f2)
           echo "COMMIT_NAME=$LAST_COMMIT_NAME" >> $GITHUB_ENV
           echo "COMMIT_EMAIL=$LAST_COMMIT_EMAIL" >> $GITHUB_ENV
-      - name: Display variables
-        run: |
-          echo  ${{ env.COMMIT_NAME }}
-          echo  ${{ env.COMMIT_EMAIL }}
       - name: Set Git Configuration
         run: |
           git config --global user.name ${{ env.COMMIT_NAME }}
           git config --global user.email ${{ env.COMMIT_EMAIL }}
-          git config --global --list
       - name: Set Version
         run: |
           BRANCH_NAME=${GITHUB_REF#refs/heads/}
-          if [[ $BRANCH_NAME == "master" ]]; then
-            VERSION=$(node -p "require('./package.json').version")
-          elif [[ $BRANCH_NAME == "develop" ]]; then
-            VERSION=$(node -p "require('./package.json').version")-beta-$(date +%s)
-          elif [[ $BRANCH_NAME == "features/"* || $BRANCH_NAME == "hotfixs/"* ]]; then
-            VERSION=$(node -p "require('./package.json').version")-alpha-$(date +%s)
-          elif [[ $BRANCH_NAME == "releases/"* ]]; then
-            VERSION=$(node -p "require('./package.json').version")-rc-$(date +%s)
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
+
+          if [[ $BRANCH_NAME != "master" ]]; then
+            LAST_VERSION_SUFFIX=$(echo $CURRENT_VERSION | cut -d '-' -f3)
+            NEXT_VERSION_SUFFIX=$((LAST_VERSION_SUFFIX + 1))
           fi
+
+          if [[ $BRANCH_NAME == "master" ]]; then
+            VERSION=$CURRENT_VERSION
+          elif [[ $BRANCH_NAME == "develop" ]]; then
+            VERSION=$(echo $CURRENT_VERSION | sed "s/-beta-$LAST_VERSION_SUFFIX$/-beta-$NEXT_VERSION_SUFFIX/")
+          elif [[ $BRANCH_NAME == "features/"* || $BRANCH_NAME == "hotfixs/"* ]]; then
+            VERSION=$(echo $CURRENT_VERSION | sed "s/-alpha-$LAST_VERSION_SUFFIX$/-alpha-$NEXT_VERSION_SUFFIX/")
+          elif [[ $BRANCH_NAME == "releases/"* ]]; then
+            VERSION=$(echo $CURRENT_VERSION | sed "s/-rc-$LAST_VERSION_SUFFIX$/-rc-$NEXT_VERSION_SUFFIX/")
+          fi
+
           echo "VERSION=$VERSION" >> $GITHUB_ENV
       - name: Update Version
         run: yarn version --new-version ${{ env.VERSION }}
