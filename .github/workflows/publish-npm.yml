@@ -8,7 +8,6 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    need: build
     steps:
       - name: Download artifacts
         uses: actions/download-artifacts@v3

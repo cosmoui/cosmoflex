@@ -12,7 +12,6 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    need: build
     steps:
       - name: Download Artifact
         uses: actions/download-artifact@v3
