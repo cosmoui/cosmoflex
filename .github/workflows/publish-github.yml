@@ -2,15 +2,16 @@ name: Publish
 
 on:
   workflow_run:
-    workflow: ["Build"]
+    workflow: [Build]
+    types:
+      - completed
+  push:
     branches:
       - develop
       - "features/*"
       - "hotfixs/*"
       - "releases/*"
       - "bugfixs/*"
-    types:
-      - completed
 
 jobs:
   publish:
