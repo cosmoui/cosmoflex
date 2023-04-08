@@ -2,7 +2,7 @@ name: Publish Github
 
 on:
   workflow_run:
-    workflow:
+    workflows:
       - "Build"
     types:
       - completed
@@ -12,10 +12,6 @@ on:
       - "hotfixs/*"
       - "releases/*"
       - "bugfixs/*"
-  workflow_run:
-    workflow: [Build]
-    types: [completed]
-    branches: [develop, "features/*", "hotfixs/*", "releases/*", "bugfixs/*"]
 
 jobs:
   publish:
