@@ -1,0 +1,23 @@
+name: Publish
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    need: build
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifacts@v3
+        with:
+          name: cosmoflex-dist
+      - name: Setup NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: lts/*
+      - run: yarn publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}

@@ -69,3 +69,8 @@ jobs:
       # - name: Update Repository Version
       #   run: git add . && git commit -m "update version" && git push
       - run: cat package.json
+      - name: Uppload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: cosomoflex-artifact
+          path: ./
