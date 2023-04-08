@@ -66,6 +66,6 @@ jobs:
           echo "VERSION=$VERSION" >> $GITHUB_ENV
       - name: Update Version
         run: yarn version --new-version ${{ env.VERSION }}
-      - name: Update Repository Version
-        run: git add . && git commit -m "update version" && git push
+      # - name: Update Repository Version
+      #   run: git add . && git commit -m "update version" && git push
       - run: cat package.json
