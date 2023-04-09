@@ -2,18 +2,9 @@ name: Version
 
 on:
   workflow_call:
-  # workflow_dispatch:
-  # push:
-  #   branches:
-  #     - master
-  #     - develop
-  #     - "features/*"
-  #     - "hotfixs/*"
-  #     - "releases/*"
-  #     - "bugfixs/*"
 
 jobs:
-  update-version:
+  main:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

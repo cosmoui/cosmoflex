@@ -2,14 +2,9 @@ name: Build
 
 on:
   workflow_call:
-  # workflow_run:
-  #   workflows:
-  #     - Version
-  #   types:
-  #     - completed
 
 jobs:
-  build:
+  main:
     runs-on: ubuntu-latest
     steps:
       - name: Download Artifact
@@ -29,4 +24,3 @@ jobs:
         with:
           name: cosmoflex-build
           path: dist
-

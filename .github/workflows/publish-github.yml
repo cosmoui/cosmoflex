@@ -1,13 +1,7 @@
 name: Publish Github
 
 on:
-  # push:
-  #   branches:
-  #     - develop
-  #     - "features/*"
-  #     - "hotfixs/*"
-  #     - "releases/*"
-  #     - "bugfixs/*"
+  workflow_call:
 
 jobs:
   publish:
@@ -18,7 +12,8 @@ jobs:
       - name: Download Artifact
         uses: actions/download-artifact@v3
         with:
-          name: cosmoflex-artifact
+          name: cosmoflex-build
+      - run: ls
       # - run: yarn publish
       #   env:
       #     NODE_AUTH_TOKEN: ${{secrets.npm_token}}
