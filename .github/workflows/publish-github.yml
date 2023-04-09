@@ -18,3 +18,5 @@ jobs:
           registry-url: https://npm.pkg.github.com/
       - name: List files
         run: ls
+      - name: Publish package
+        run: yarn publish
