@@ -17,7 +17,5 @@ jobs:
           node-version: lts/*
           registry-url: https://npm.pkg.github.com/
           scope: @cosmoui/cosmoflex
-      - run: ls
-      # - run: yarn publish
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+      - name: List files
+        run: ls
