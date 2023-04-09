@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: lts/*
           registry-url: https://npm.pkg.github.com/
-          scope: @cosmoui/cosmoflex/scratch
+          scope: @cosmoui/cosmoflex
       - run: ls
       # - run: yarn publish
       #   env:
