@@ -16,6 +16,5 @@ jobs:
         with:
           node-version: lts/*
           registry-url: https://npm.pkg.github.com/
-          scope: @cosmoui/cosmoflex
       - name: List files
         run: ls
