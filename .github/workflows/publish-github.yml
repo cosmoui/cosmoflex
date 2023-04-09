@@ -21,9 +21,6 @@ jobs:
       - name: Set NODE_AUTH_TOKEN
         run: echo "NODE_AUTH_TOKEN=${{ secrets.GIT_TOKEN }}" >> $GITHUB_ENV
 
-      - name: display .yarnrc
-        run: cat .yarnrc
-
       - name: List files
         run: ls
 
