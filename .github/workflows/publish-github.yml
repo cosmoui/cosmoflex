@@ -18,20 +18,20 @@ jobs:
           node-version: lts/*
           registry-url: https://npm.pkg.github.com/
 
-      - name: Config .yarnrc.yml
-        run: |
-          echo "npmRegistries:" > ~/.yarnrc.yml
-          echo "\"https://registry.yarnpkg.com\":" >> ~/.yarnrc.yml
-          echo "npmAlwaysAuth: true" >> ~/.yarnrc
-          echo "\"https://npm.pkg.github.com\"" >> ~/.yarnrc.yml
-          echo "npmAuthToken: \"${{secrets.GIT_TOKEN}}\"" >> ~/.yarnrc.yml
-          echo "npmAlwaysAuth: true" >> ~/.yarnrc.yml
-          echo "npmScopes:" >> ~/.yarnrc.yml
-          echo "cosmoui:" >> ~/.yarnrc.yml
-          echo "npmRegistryServer: \"https://npm.pkg.github.com\"" >> ~/.yarnrc.yml
+      # - name: Config .yarnrc.yml
+      #   run: |
+      #     echo "npmRegistries:" > ~/.yarnrc.yml
+      #     echo "\"https://registry.yarnpkg.com\":" >> ~/.yarnrc.yml
+      #     echo "npmAlwaysAuth: true" >> ~/.yarnrc
+      #     echo "\"https://npm.pkg.github.com\"" >> ~/.yarnrc.yml
+      #     echo "npmAuthToken: \"${{secrets.GIT_TOKEN}}\"" >> ~/.yarnrc.yml
+      #     echo "npmAlwaysAuth: true" >> ~/.yarnrc.yml
+      #     echo "npmScopes:" >> ~/.yarnrc.yml
+      #     echo "cosmoui:" >> ~/.yarnrc.yml
+      #     echo "npmRegistryServer: \"https://npm.pkg.github.com\"" >> ~/.yarnrc.yml
 
       - name: display .yarnrc.yml
-        run: cat ~/.yarnrc.yml
+        run: cat .yarnrc.yml
 
       - name: List files
         run: ls
