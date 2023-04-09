@@ -19,6 +19,8 @@ jobs:
         run: yarn install --frozen-lockfile
       - name: Build Artifact
         run: yarn build
+      - name: List files
+        run: ls dist
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
