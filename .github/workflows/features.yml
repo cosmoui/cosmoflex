@@ -5,9 +5,10 @@ on:
   push:
     branches:
       - "features/*"
-  permissions:
-    contents: read
-    packages: write
+
+permissions:
+  contents: read
+  packages: write
 
 jobs:
   version:
