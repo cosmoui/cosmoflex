@@ -24,6 +24,6 @@ const compile = () =>
     .pipe(gulp.dest(paths.dist))
 
 const copy = () =>
-  gulp.src([`${paths.src}/**`, "package.json", ".npmrc"]).pipe(gulp.dest(paths.dist))
+  gulp.src([`${paths.src}/**`, "package.json"]).pipe(gulp.dest(paths.dist))
 
 export default gulp.series(clean, gulp.parallel(compile, copy))

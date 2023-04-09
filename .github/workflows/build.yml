@@ -19,8 +19,8 @@ jobs:
         run: yarn install --frozen-lockfile
       - name: Build Artifact
         run: yarn build
-      - name: List files
-        run: ls dist
+      - name: Add .npmrc
+        run: cp ./.npmrc dist/
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
