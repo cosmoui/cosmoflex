@@ -1,15 +1,16 @@
-# TODO: Fix CI/CD with incremental version number depending on branch and list of existing deployed versions
 name: Version
 
 on:
-  push:
-    branches:
-      - master
-      - develop
-      - "features/*"
-      - "hotfixs/*"
-      - "releases/*"
-      - "bugfixs/*"
+  workflow_call:
+  # workflow_dispatch:
+  # push:
+  #   branches:
+  #     - master
+  #     - develop
+  #     - "features/*"
+  #     - "hotfixs/*"
+  #     - "releases/*"
+  #     - "bugfixs/*"
 
 jobs:
   update-version:
@@ -67,3 +68,8 @@ jobs:
       - name: Update Version
         run: yarn version --new-version ${{ env.VERSION }}
       - run: cat package.json
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: cosmoflex-version
+          path: ./

@@ -1,0 +1,24 @@
+name: Publish Github
+
+on:
+  # push:
+  #   branches:
+  #     - develop
+  #     - "features/*"
+  #     - "hotfixs/*"
+  #     - "releases/*"
+  #     - "bugfixs/*"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update Version
+        uses: ./.github/workflows/verson.yml@main
+      - name: Download Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: cosmoflex-artifact
+      # - run: yarn publish
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{secrets.npm_token}}

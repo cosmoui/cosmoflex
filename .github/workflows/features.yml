@@ -1,0 +1,14 @@
+name: Features
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - "features/*"
+
+jobs:
+  version:
+    uses: ./.github/workflows/shared/version.yml
+  build:
+    needs: version
+    uses: ./.github/workflows/shared/build.yml

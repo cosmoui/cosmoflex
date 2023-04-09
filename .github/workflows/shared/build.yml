@@ -1,24 +1,21 @@
 name: Build
 
 on:
-  workflow_run:
-    workflows:
-      - "Version"
-    types:
-      - completed
-    branches:
-      - develop
-      - "features/*"
-      - "hotfixs/*"
-      - "releases/*"
-      - "bugfixs/*"
+  workflow_call:
+  # workflow_run:
+  #   workflows:
+  #     - Version
+  #   types:
+  #     - completed
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: cosmoflex-version
       - name: Setup NodeJS
         uses: actions/setup-node@v3
         with:
@@ -30,5 +27,6 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: cosmoflex-artifact-dev
+          name: cosmoflex-build
           path: dist
+
