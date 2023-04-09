@@ -20,7 +20,7 @@ jobs:
       - name: Build Artifact
         run: yarn build
       - name: Add .npmrc
-        run: cp .npmrc dist/
+        run: cp .npmrc dist
       - name: List files
         run: ls dist
       - name: Upload Artifact
