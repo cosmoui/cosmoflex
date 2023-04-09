@@ -16,6 +16,14 @@ jobs:
         with:
           node-version: lts/*
           registry-url: https://npm.pkg.github.com/
+      - name: Config .npmrc
+        run: |
+        touch ~/.nprmrc && echo registry=https://registry.yrnpkg.com/
+        @cosmoui:registry=https://npm.pkg.github.com/
+        //npm.pkg.github.com/:_authToken=${{secrets.GIT_TOKEN}}
+        always-auth=true >> ~/.nprmrc
+      - name: display .nprmrc
+        run: cat ~/.nprmc
       - name: List files
         run: ls
       - name: Publish package
