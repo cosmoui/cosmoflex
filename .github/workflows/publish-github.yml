@@ -23,6 +23,6 @@ jobs:
       - name: List files
         run: ls
       - name: Publish package
-        run: yarn publish
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GIT_PKG_TOKEN }}

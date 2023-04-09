@@ -16,13 +16,10 @@ jobs:
         with:
           node-version: lts/*
       - name: Install Dependencies
-        run: yarn install --frozen-lockfile
+        # run: yarn install --frozen-lockfile
+        run: yarn ci
       - name: Build Artifact
-        run: yarn build
-      - name: Add .npmrc
-        run: cp .npmrc dist
-      - name: List files
-        run: ls dist
+        run: npm run build
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
