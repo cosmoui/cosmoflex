@@ -12,8 +12,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+      - name: Download Artifact
+        uses: actions/download-artifact@v3
         with:
           name: cosmoflex-version
       - name: Setup NodeJS
