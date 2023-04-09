@@ -15,17 +15,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: lts/*
-      - name: Setup npmrc
-        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.GIT_PKG_TOKEN }}" >> ~/.npmrc
       - name: Install Dependencies
         # run: yarn install --frozen-lockfile
         run: npm ci
       - name: Build Artifact
         run: npm run build
-      - name: Setup npmrc
-        run: cp .npmrc dist
-      - name: Install Dependencies
-
+      - name: Update npmrc
+        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.GIT_PKG_TOKEN }}" >> .npmrc && cp .npmrc dist
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
