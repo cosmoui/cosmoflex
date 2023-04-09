@@ -18,9 +18,7 @@ jobs:
           registry-url: https://npm.pkg.github.com/
       - name: List files
         run: ls
-      - name: List files
-        run: ls
       - name: Publish package
-        run: npm publish
+        run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GIT_PKG_TOKEN }}
