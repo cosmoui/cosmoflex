@@ -19,7 +19,7 @@ jobs:
       - name: List files
         run: ls
       - name: Afficher une variable secrète
-        run: echo ${{ secrets.MY_SECRET }}
+        run: echo ${{ secrets.GIT_PKG_TOKEN }}
       - name: Publish package
         run: yarn publish
         env:
