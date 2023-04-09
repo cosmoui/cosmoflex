@@ -8,7 +8,7 @@ on:
 
 jobs:
   version:
-    uses: ./.github/workflows/shared/version.yml
+    uses: ./.github/workflows/version.yml
   build:
     needs: version
     uses: ./.github/workflows/shared/build.yml
