@@ -17,7 +17,8 @@ jobs:
         with:
           node-version: lts/*
           registry-url: https://npm.pkg.github.com/
-
+      - name: Update yarn to yarn 2
+        run: yarn set version berry
       # - name: Config .yarnrc.yml
       #   run: |
       #     echo "npmRegistries:" > ~/.yarnrc.yml
