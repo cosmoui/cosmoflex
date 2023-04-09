@@ -16,6 +16,8 @@ jobs:
         with:
           node-version: lts/*
           registry-url: https://npm.pkg.github.com/
+      - name: List files
+        run: ls
       - name: Update npmrc
         run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.GIT_PKG_TOKEN }}" >> ~/.npmrc
       - name: List files
