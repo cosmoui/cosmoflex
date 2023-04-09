@@ -18,9 +18,6 @@ jobs:
           node-version: lts/*
           registry-url: https://npm.pkg.github.com/
 
-      - name: Set NODE_AUTH_TOKEN
-        run: echo "NODE_AUTH_TOKEN=${{ secrets.GIT_TOKEN }}" >> $GITHUB_ENV
-
       - name: List files
         run: ls
 
