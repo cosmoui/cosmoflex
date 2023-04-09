@@ -9,10 +9,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
       - name: Setup NodeJS
         uses: actions/setup-node@v3
         with:
           node-version: lts/*
+
       - name: Get last commit author
         run: |
           LAST_COMMIT=$(git log -1 --pretty=format:"%an|%ae")
@@ -20,10 +22,12 @@ jobs:
           LAST_COMMIT_EMAIL=$(echo $LAST_COMMIT | cut -d '|' -f2)
           echo "COMMIT_NAME=$LAST_COMMIT_NAME" >> $GITHUB_ENV
           echo "COMMIT_EMAIL=$LAST_COMMIT_EMAIL" >> $GITHUB_ENV
+
       - name: Set Git Configuration
         run: |
           git config --global user.name ${{ env.COMMIT_NAME }}
           git config --global user.email ${{ env.COMMIT_EMAIL }}
+
       - name: Set Version
         run: |
           BRANCH_NAME=${GITHUB_REF#refs/heads/}
@@ -56,9 +60,11 @@ jobs:
             fi
           fi
           echo "VERSION=$VERSION" >> $GITHUB_ENV
+
       - name: Update Version
         run: yarn version --new-version ${{ env.VERSION }}
       - run: cat package.json
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:

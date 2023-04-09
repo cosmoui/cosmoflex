@@ -17,19 +17,9 @@ jobs:
         with:
           node-version: lts/*
           registry-url: https://npm.pkg.github.com/
+
       - name: Set NODE_AUTH_TOKEN
         run: echo "NODE_AUTH_TOKEN=${{ secrets.GIT_TOKEN }}" >> $GITHUB_ENV
-      # - name: Config .yarnrc.yml
-      #   run: |
-      #     echo "npmRegistries:" > ~/.yarnrc.yml
-      #     echo "\"https://registry.yarnpkg.com\":" >> ~/.yarnrc.yml
-      #     echo "npmAlwaysAuth: true" >> ~/.yarnrc
-      #     echo "\"https://npm.pkg.github.com\"" >> ~/.yarnrc.yml
-      #     echo "npmAuthToken: \"${{secrets.GIT_TOKEN}}\"" >> ~/.yarnrc.yml
-      #     echo "npmAlwaysAuth: true" >> ~/.yarnrc.yml
-      #     echo "npmScopes:" >> ~/.yarnrc.yml
-      #     echo "cosmoui:" >> ~/.yarnrc.yml
-      #     echo "npmRegistryServer: \"https://npm.pkg.github.com\"" >> ~/.yarnrc.yml
 
       - name: display .yarnrc
         run: cat .yarnrc
