@@ -11,10 +11,6 @@
     "type": "git",
     "url": "https://github.com/cosmoui/cosmoflex.git"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/@cosmoflex/cosmoflex",
-    "tag": "scratch"
-  },
   "files": [
     "dist"
   ],
