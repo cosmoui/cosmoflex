@@ -17,8 +17,6 @@ jobs:
         with:
           node-version: lts/*
           registry-url: https://npm.pkg.github.com/
-      - name: Update yarn to yarn 2
-        run: yarn set version berry
       # - name: Config .yarnrc.yml
       #   run: |
       #     echo "npmRegistries:" > ~/.yarnrc.yml
@@ -31,8 +29,8 @@ jobs:
       #     echo "cosmoui:" >> ~/.yarnrc.yml
       #     echo "npmRegistryServer: \"https://npm.pkg.github.com\"" >> ~/.yarnrc.yml
 
-      - name: display .yarnrc.yml
-        run: cat .yarnrc.yml
+      - name: display .yarnrc
+        run: cat .yarnrc
 
       - name: List files
         run: ls
