@@ -7,12 +7,16 @@ jobs:
   main:
     runs-on: ubuntu-latest
     steps:
-      - name: Update Version
-        uses: ./.github/workflows/verson.yml@main
       - name: Download Artifact
         uses: actions/download-artifact@v3
         with:
           name: cosmoflex-build
+      - name: Setup NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: lts/*
+          registry-url: https://npm.pkg.github.com/
+          scope: @cosmoui/cosmoflex/scratch
       - run: ls
       # - run: yarn publish
       #   env:
