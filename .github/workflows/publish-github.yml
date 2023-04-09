@@ -17,7 +17,7 @@ jobs:
           node-version: lts/*
           registry-url: https://npm.pkg.github.com/
       - name: Update npmrc
-        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> ~/.npmrc
+        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.GIT_PKG_TOKEN }}" >> ~/.npmrc
       - name: List files
         run: ls
       - name: Publish package
