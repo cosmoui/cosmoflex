@@ -21,7 +21,7 @@ jobs:
       - name: List files
         run: ls
 
-      # - name: Publish package
-      #   run: yarn publish
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - name: Publish package
+        run: yarn publish scratch/
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
