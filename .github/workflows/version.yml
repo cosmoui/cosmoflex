@@ -65,6 +65,7 @@ jobs:
 
       - name: Update Version
         run: yarn version --new-version ${{ env.VERSION }}
+      - run: cat package.json
       - run: git pull && git add . && git commit -m "update-version-runner" && git push
 
       - name: Upload Artifact
