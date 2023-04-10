@@ -43,16 +43,22 @@ jobs:
           elif [[ $BRANCH_NAME == "develop" ]]; then
             SUFFIX="beta"
           fi
+
           VERSIONS = curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
           -H "Accept: application/vnd.github.package-deletes-preview+json" \
           https://api.github.com/repos/{OWNER}/{REPO}/packages/{PACKAGE_NAME}/versions \
           | jq -r '.[] | .version'
-          echo $VERSIONS
+
+          echo "VERSIONS :"
+          for VERSION in $VERSIONS; do
+            echo "- $VERSION"
+          done
 
       - name: Set Version
         run: |
           BRANCH_NAME=${GITHUB_REF#refs/heads/}
           CURRENT_VERSION=$(node -p "require('./package.json').version")
+
           if [[ $BRANCH_NAME == "master" ]]; then
             VERSION=$CURRENT_VERSION
           elif [[ $BRANCH_NAME == "develop" ]]; then
@@ -80,6 +86,7 @@ jobs:
               VERSION="${CURRENT_VERSION}-rc-0"
             fi
           fi
+          
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Update Version
