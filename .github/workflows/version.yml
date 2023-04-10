@@ -28,15 +28,9 @@ jobs:
           git config --global user.name ${{ env.COMMIT_NAME }}
           git config --global user.email ${{ env.COMMIT_EMAIL }}
 
-      - name: Setup JQ
-        run: sudo apt-get install jq
-
       - name: Get latest version
         env:
-          OWNER: cosmoui
-          REPO: cosmoflex
-          PACKAGE_NAME: "@cosmoui/cosmoflex"
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_PAT }}
         run: |
           BRANCH_NAME=${GITHUB_REF#refs/heads/}
           if [[ $BRANCH_NAME == "features/"* || $BRANCH_NAME == "hotfixs/"* ]]; then
@@ -46,10 +40,11 @@ jobs:
           elif [[ $BRANCH_NAME == "develop" ]]; then
             SUFFIX="beta"
           fi
-          response=$(curl -s -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $GITHUB_TOKEN" "https://api.github.com/repos/$OWNER/$REPO/packages?package_type=npm&per_page=100")
-          package_versions=$(echo "$response" | jq -r ".[] | select(.name == \"${PACKAGE_NAME}\") | .versions[].name")
-          filtered_versions=$(echo "$package_versions" | grep -P "$SUFFIX")
-          echo "Filtered versions: $filtered_versions"
+          query='query { repository(owner: "OWNER", name: "REPO") { packages(first: 100, packageType: NPM) { edges { node { nameWithOwner } } } } }'
+          response=$(curl -s -H "Authorization: bearer $GITHUB_TOKEN" -X POST -d '{"query":"'"$query"'"}' https://api.github.com/graphql)
+          packages=$(echo $response | jq '.data.repository.packages.edges[].node.nameWithOwner' -r)
+          echo "Packages NPM:"
+          echo "$packages"
 
       - name: Set Version
         run: |
