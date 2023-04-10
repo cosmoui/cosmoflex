@@ -40,7 +40,7 @@ jobs:
               NEXT_VERSION_SUFFIX=$((LAST_VERSION_SUFFIX + 1))
               VERSION=$(echo $CURRENT_VERSION | sed "s/-beta-$LAST_VERSION_SUFFIX$/-beta-$NEXT_VERSION_SUFFIX/")
             else
-              VERSION="${CURRENT_VERSION}-beta-1"
+              VERSION="${CURRENT_VERSION}-beta-0"
             fi
           elif [[ $BRANCH_NAME == "features/"* || $BRANCH_NAME == "hotfixs/"* ]]; then
             if echo "$CURRENT_VERSION" | grep -q -- "-alpha-"; then
@@ -48,7 +48,7 @@ jobs:
               NEXT_VERSION_SUFFIX=$((LAST_VERSION_SUFFIX + 1))
               VERSION=$(echo $CURRENT_VERSION | sed "s/-alpha-$LAST_VERSION_SUFFIX$/-alpha-$NEXT_VERSION_SUFFIX/")
             else
-              VERSION="${CURRENT_VERSION}-alpha-1"
+              VERSION="${CURRENT_VERSION}-alpha-0"
             fi
           elif [[ $BRANCH_NAME == "releases/"* ]]; then
             if echo "$CURRENT_VERSION" | grep -q -- "-rc-"; then
@@ -56,7 +56,7 @@ jobs:
               NEXT_VERSION_SUFFIX=$((LAST_VERSION_SUFFIX + 1))
               VERSION=$(echo $CURRENT_VERSION | sed "s/-rc-$LAST_VERSION_SUFFIX$/-rc-$NEXT_VERSION_SUFFIX/")
             else
-              VERSION="${CURRENT_VERSION}-rc-1"
+              VERSION="${CURRENT_VERSION}-rc-0"
             fi
           fi
           echo "VERSION=$VERSION" >> $GITHUB_ENV
