@@ -9,6 +9,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          persist-credentials: true
 
       - name: Setup NodeJS
         uses: actions/setup-node@v3
@@ -64,6 +66,7 @@ jobs:
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Update Version
+        shell: bash
         run: |
           yarn version --new-version ${{ env.VERSION }}
           cat package.json
