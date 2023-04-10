@@ -35,7 +35,7 @@ jobs:
         env:
           OWNER: cosmoui
           REPO: cosmoflex
-          PACKAGE_NAME: "@cosmoui/cosmoflex"
+          PACKAGE_NAME: '@cosmoui/cosmoflex'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           BRANCH_NAME=${GITHUB_REF#refs/heads/}
