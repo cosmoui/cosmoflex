@@ -64,10 +64,10 @@ jobs:
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Update Version
-        run: yarn version --new-version ${{ env.VERSION }}
-      - run: cat package.json
-      - run: git branch
-      - run: git push
+        run: |
+          yarn version --new-version ${{ env.VERSION }}
+          cat package.json
+          git push
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
