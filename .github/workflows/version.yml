@@ -51,7 +51,7 @@ jobs:
           VERSIONS=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
           -H "Accept: application/vnd.github.package-deletes-preview+json" \
           https://api.github.com/repos/${OWNER}/${REPO}/packages/${PACKAGE_NAME}/versions \
-          | jq -r '.[] | .name // .tag_name')
+          | jq -r '.[] | .tag_name // empty')
 
           echo "VERSIONS :"
           for VERSION in $VERSIONS; do
