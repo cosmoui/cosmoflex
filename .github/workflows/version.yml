@@ -37,6 +37,7 @@ jobs:
           REPO: cosmoflex
           PACKAGE_NAME: '@cosmoui/cosmoflex'
           GITHUB_TOKEN: ${{ secrets.GITHUB_PAT }}
+        shell: /usr/bin/bash -e {0}
         run: |
           BRANCH_NAME=${GITHUB_REF#refs/heads/}
           if [[ $BRANCH_NAME == "features/"* || $BRANCH_NAME == "hotfixs/"* ]]; then
@@ -50,9 +51,12 @@ jobs:
           VERSIONS=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
           -H "Accept: application/vnd.github.package-deletes-preview+json" \
           https://api.github.com/repos/${OWNER}/${REPO}/packages/${PACKAGE_NAME}/versions \
-          | jq -r '.[] | .version')
+          | jq -r '.[] | .name // .tag_name')
 
-          echo "VERSIONS : $VERSIONS"
+          echo "VERSIONS :"
+          for VERSION in $VERSIONS; do
+            echo "- $VERSION"
+          done
 
       - name: Set Version
         run: |
