@@ -28,6 +28,9 @@ jobs:
           git config --global user.name ${{ env.COMMIT_NAME }}
           git config --global user.email ${{ env.COMMIT_EMAIL }}
 
+      - name: Setup JQ
+        run: sudo apt-get install jq
+
       - name: Get latest version
         env:
           OWNER: cosmoui
