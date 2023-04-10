@@ -34,6 +34,7 @@ jobs:
           REPO: cosmoflex
           PACKAGE_NAME: '@cosmoui/cosmoflex'
           GITHUB_TOKEN: ${{ secrets.GITHUB_PAT }}
+        shell: /usr/bin/bash -e {0}
         run: |
           BRANCH_NAME=${GITHUB_REF#refs/heads/}
           if [[ $BRANCH_NAME == "features/"* || $BRANCH_NAME == "hotfixs/"* ]]; then
