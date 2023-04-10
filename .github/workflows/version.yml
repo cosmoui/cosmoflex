@@ -46,8 +46,8 @@ jobs:
           elif [[ $BRANCH_NAME == "develop" ]]; then
             SUFFIX="beta"
           fi
-          versions=$(curl -s -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $GITHUB_TOKEN" "https://api.github.com/repos/$OWNER/$REPO/packages?package_type=npm&per_page=100" | jq -r ".[] | select(.name == \"$PACKAGE_NAME\") | .versions")
-          filtered_versions=$(echo "$versions" | jq -r "map(select(.name | test(\"$SUFFIX\"))) | .[].name")
+          versions=$(curl -s -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $GITHUB_TOKEN" "https://api.github.com/repos/$OWNER/$REPO/packages?package_type=npm&per_page=100" | jq -r ".[] | select(.name == \"$PACKAGE_NAME\")")
+          filtered_versions=$(echo "$versions" | jq -r ".versions | map(select(.name | test(\"$SUFFIX\"))) | .[].name")
           echo "Filtered versions: $filtered_versions"
 
       - name: Set Version
