@@ -12,16 +12,22 @@ jobs:
         with:
           name: cosmoflex-build
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+
       - name: Setup NodeJS
         uses: actions/setup-node@v3
         with:
           node-version: lts/*
+          cache: 'pnpm'
           registry-url: https://npm.pkg.github.com/
 
       - name: List files
         run: ls
 
       - name: Publish package
-        run: yarn publish scratch/
+        run: pnpm publish scratch/
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
