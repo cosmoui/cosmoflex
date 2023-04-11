@@ -30,6 +30,20 @@ jobs:
           git config --global user.name ${{ env.COMMIT_NAME }}
           git config --global user.email ${{ env.COMMIT_EMAIL }}
 
+      - name: Get package list
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const octokit = github.getOctokit<${{secrets.GITHUB_TOKEN}}>
+            const response = await octokit.request('GET /user/packages', {
+              mediaType: {
+                previews: ['gallium']
+              },
+              username: '<your_username>'
+            });
+
+            console.log(response.data)
+
       - name: Set Version
         run: |
           BRANCH_NAME=${GITHUB_REF#refs/heads/}
