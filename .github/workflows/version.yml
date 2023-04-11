@@ -12,16 +12,10 @@ jobs:
         with:
           persist-credentials: true
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: latest
-
       - name: Setup NodeJS
         uses: actions/setup-node@v3
         with:
           node-version: lts/*
-          cache: 'pnpm'
 
       - name: Get last commit author
         run: |
@@ -74,7 +68,7 @@ jobs:
       - name: Update Version
         shell: bash
         run: |
-          pnpm version --new-version ${{ env.VERSION }}
+          yarn version --new-version ${{ env.VERSION }}
           cat package.json
           git push
 

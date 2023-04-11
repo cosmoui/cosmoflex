@@ -15,7 +15,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "gulp"
+    "build": "gulp",
+    "ci": "yarn install --frozen-lockfile"
   },
   "devDependencies": {
     "clean-css": "^5.3.2",

@@ -12,22 +12,16 @@ jobs:
         with:
           name: cosmoflex-version
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: latest
-
       - name: Setup NodeJS
         uses: actions/setup-node@v3
         with:
           node-version: lts/*
-          cache: 'pnpm'
 
       - name: Install Dependencies
-        run: pnpm ci
+        run: yarn install --frozen-lockfile
 
       - name: Build Artifact
-        run: pnpm run build
+        run: yarn build
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
