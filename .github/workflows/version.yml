@@ -69,8 +69,6 @@ jobs:
         shell: bash
         run: |
           yarn version --new-version ${{ env.VERSION }}
-          cat package.json
-          git push
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
