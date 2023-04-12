@@ -35,7 +35,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            console.log(github.context)
+            console.log(github)
             const { token } = github.context;
             const octokit = github.getOctokit(token);
             const response = await octokit.request('GET /user/packages', {
