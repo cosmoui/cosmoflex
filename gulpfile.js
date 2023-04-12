@@ -25,7 +25,7 @@ const compile = () =>
 
 const copy = () =>
   gulp
-    .src([`${paths.src}/**`, "package.json"])
+    .src([`${paths.src}/**`])
     .pipe(gulp.dest(paths.dist))
 
 export default gulp.series(clean, gulp.parallel(compile, copy))

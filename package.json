@@ -1,6 +1,6 @@
 {
   "name": "@cosmoui/cosmoflex",
-  "version": "0.0.1-alpha-0",
+  "version": "0.0.1",
   "description": "CosmoFlex, a sleek and versatile CSS framework for responsive websites and mobile apps. Designed for a seamless development experience and stunning results.",
   "main": "dist/index.min.css",
   "author": "Massinissa Amalou",
@@ -12,7 +12,12 @@
     "url": "https://github.com/cosmoui/cosmoflex.git"
   },
   "files": [
-    "dist"
+    "dist/lib",
+    "dist/cosmoflex.scss",
+    "dist/cosmoflex.css",
+    "dist/cosmoflex.min.css",
+    "LICENSE",
+    "README.md"
   ],
   "scripts": {
     "build": "gulp",
@@ -26,6 +31,5 @@
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^5.1.0",
     "sass": "^1.61.0"
-  },
-  "packageManager": "yarn@3.5.0"
+  }
 }
