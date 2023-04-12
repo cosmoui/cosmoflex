@@ -24,4 +24,4 @@ jobs:
       - name: Publish package
         run: yarn publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.FLEX_GIT_PKG_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.PKG_TOKEN }}
