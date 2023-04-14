@@ -33,12 +33,11 @@ jobs:
 
       - name: Run Secrets
         shell: bash
+        environment: Scratch
         run: |
           echo "$TOKEN"
-          echo "$TOKENORG"
         env:
-          TOKEN: ${{ secrets.MYSECRET }}
-          TOKENORG: ${{ secrets.SECRET_TOKEN_ORG }}
+          TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Get packages list
         run: |
