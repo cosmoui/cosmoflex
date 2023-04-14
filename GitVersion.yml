@@ -1,0 +1,7 @@
+mode: ContinuousDeployment
+branches:
+  feature:
+    regex: features?[/-]
+    tag: alpha
+    increment: Inherit
+    source-branches: ["develop"]
