@@ -39,40 +39,40 @@ jobs:
             -H "X-GitHub-Api-Version: 2022-11-28" \
             https://api.github.com/orgs/cosmoui/packages/npm/cosmoflex
 
-      # - name: Set Version
-      #   run: |
-      #     BRANCH_NAME=${GITHUB_REF#refs/heads/}
-      #     CURRENT_VERSION=$(node -p "require('./package.json').version")
+      - name: Set Version
+        run: |
+          BRANCH_NAME=${GITHUB_REF#refs/heads/}
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
 
-      #     if [[ $BRANCH_NAME == "master" ]]; then
-      #       VERSION=$CURRENT_VERSION
-      #     elif [[ $BRANCH_NAME == "develop" ]]; then
-      #       if echo "$CURRENT_VERSION" | grep -q -- "-beta-"; then
-      #         LAST_VERSION_SUFFIX=$(echo $CURRENT_VERSION | cut -d '-' -f3)
-      #         NEXT_VERSION_SUFFIX=$((LAST_VERSION_SUFFIX + 1))
-      #         VERSION=$(echo $CURRENT_VERSION | sed "s/-beta-$LAST_VERSION_SUFFIX$/-beta-$NEXT_VERSION_SUFFIX/")
-      #       else
-      #         VERSION="${CURRENT_VERSION}-beta-0"
-      #       fi
-      #     elif [[ $BRANCH_NAME == "features/"* || $BRANCH_NAME == "hotfixs/"* ]]; then
-      #       if echo "$CURRENT_VERSION" | grep -q -- "-alpha-"; then
-      #         LAST_VERSION_SUFFIX=$(echo $CURRENT_VERSION | cut -d '-' -f3)
-      #         NEXT_VERSION_SUFFIX=$((LAST_VERSION_SUFFIX + 1))
-      #         VERSION=$(echo $CURRENT_VERSION | sed "s/-alpha-$LAST_VERSION_SUFFIX$/-alpha-$NEXT_VERSION_SUFFIX/")
-      #       else
-      #         VERSION="${CURRENT_VERSION}-alpha-0"
-      #       fi
-      #     elif [[ $BRANCH_NAME == "releases/"* ]]; then
-      #       if echo "$CURRENT_VERSION" | grep -q -- "-rc-"; then
-      #         LAST_VERSION_SUFFIX=$(echo $CURRENT_VERSION | cut -d '-' -f3)
-      #         NEXT_VERSION_SUFFIX=$((LAST_VERSION_SUFFIX + 1))
-      #         VERSION=$(echo $CURRENT_VERSION | sed "s/-rc-$LAST_VERSION_SUFFIX$/-rc-$NEXT_VERSION_SUFFIX/")
-      #       else
-      #         VERSION="${CURRENT_VERSION}-rc-0"
-      #       fi
-      #     fi
+          if [[ $BRANCH_NAME == "master" ]]; then
+            VERSION=$CURRENT_VERSION
+          elif [[ $BRANCH_NAME == "develop" ]]; then
+            if echo "$CURRENT_VERSION" | grep -q -- "-beta-"; then
+              LAST_VERSION_SUFFIX=$(echo $CURRENT_VERSION | cut -d '-' -f3)
+              NEXT_VERSION_SUFFIX=$((LAST_VERSION_SUFFIX + 1))
+              VERSION=$(echo $CURRENT_VERSION | sed "s/-beta-$LAST_VERSION_SUFFIX$/-beta-$NEXT_VERSION_SUFFIX/")
+            else
+              VERSION="${CURRENT_VERSION}-beta-0"
+            fi
+          elif [[ $BRANCH_NAME == "features/"* || $BRANCH_NAME == "hotfixs/"* ]]; then
+            if echo "$CURRENT_VERSION" | grep -q -- "-alpha-"; then
+              LAST_VERSION_SUFFIX=$(echo $CURRENT_VERSION | cut -d '-' -f3)
+              NEXT_VERSION_SUFFIX=$((LAST_VERSION_SUFFIX + 1))
+              VERSION=$(echo $CURRENT_VERSION | sed "s/-alpha-$LAST_VERSION_SUFFIX$/-alpha-$NEXT_VERSION_SUFFIX/")
+            else
+              VERSION="${CURRENT_VERSION}-alpha-0"
+            fi
+          elif [[ $BRANCH_NAME == "releases/"* ]]; then
+            if echo "$CURRENT_VERSION" | grep -q -- "-rc-"; then
+              LAST_VERSION_SUFFIX=$(echo $CURRENT_VERSION | cut -d '-' -f3)
+              NEXT_VERSION_SUFFIX=$((LAST_VERSION_SUFFIX + 1))
+              VERSION=$(echo $CURRENT_VERSION | sed "s/-rc-$LAST_VERSION_SUFFIX$/-rc-$NEXT_VERSION_SUFFIX/")
+            else
+              VERSION="${CURRENT_VERSION}-rc-0"
+            fi
+          fi
 
-      #     echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Update Version
         shell: bash
