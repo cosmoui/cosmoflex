@@ -12,10 +12,10 @@
     "url": "https://github.com/cosmoui/cosmoflex.git"
   },
   "files": [
-    "dist/lib",
-    "dist/cosmoflex.scss",
-    "dist/cosmoflex.css",
-    "dist/cosmoflex.min.css",
+    "lib",
+    "cosmoflex.scss",
+    "cosmoflex.css",
+    "cosmoflex.min.css",
     "LICENSE",
     "README.md"
   ],
