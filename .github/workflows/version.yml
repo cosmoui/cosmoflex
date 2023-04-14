@@ -34,10 +34,10 @@ jobs:
       - name: Run Secrets
         run: |
           echo "${{ TOKEN }}"
-          echo "${{ TOKEN_ORG }}"
+          echo "${{ TOKENORG }}"
         env:
           TOKEN: ${{ secrets.MY_SECRET }}
-          TOKEN_ORG: ${{ secrets.SECRET_TOKEN_ORG }}
+          TOKENORG: ${{ secrets.SECRET_TOKEN_ORG }}
 
       - name: Get packages list
         run: |
