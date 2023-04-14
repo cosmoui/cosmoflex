@@ -38,7 +38,8 @@ jobs:
         run: |
           echo "$TOKEN" | jq
         env:
-          TOKEN: ${{ secrets.MY_SECRET }}
+          # TOKEN: ${{ secrets.MY_SECRET }}
+          TOKEN: ${{ secrets }}
 
       - name: Get packages list
         run: |
