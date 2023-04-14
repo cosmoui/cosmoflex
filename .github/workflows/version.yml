@@ -33,8 +33,8 @@ jobs:
 
       - name: Run Secrets
         run: |
-          echo "${{ TOKEN }}"
-          echo "${{ TOKENORG }}"
+          echo "$TOKEN"
+          echo "$TOKENORG"
         env:
           TOKEN: ${{ secrets.MY_SECRET }}
           TOKENORG: ${{ secrets.SECRET_TOKEN_ORG }}
