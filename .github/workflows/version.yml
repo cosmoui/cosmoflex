@@ -36,7 +36,7 @@ jobs:
 
       - name: Run Secrets
         run: |
-          echo "$TOKEN" | jq
+          echo "${{ secrets }}"| jq
         env:
           # TOKEN: ${{ secrets.MY_SECRET }}
           TOKEN: ${{ secrets }}
