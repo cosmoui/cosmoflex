@@ -77,13 +77,13 @@ jobs:
       # - name: Debug GitVersion
       #   run: echo ${{ steps.gitversion.output.semVer }}
 
-      # - name: Update Version
-      #   shell: bash
-      #   run: |
-      #     yarn version --new-version ${{ env.VERSION }}
+      - name: Update Version
+        shell: bash
+        run: |
+          yarn version --new-version ${{ env.VERSION }}
 
-      # - name: Upload Artifact
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: cosmoflex-version
-      #     path: ./
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: cosmoflex-version
+          path: ./
