@@ -37,7 +37,7 @@ jobs:
           echo "$TOKEN"
           echo "$TOKENORG"
         env:
-          TOKEN: ${{ secrets.MY_SECRET }}
+          TOKEN: ${{ secrets.MYSCRET }}
           TOKENORG: ${{ secrets.SECRET_TOKEN_ORG }}
 
       - name: Get packages list
