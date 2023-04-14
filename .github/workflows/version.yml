@@ -30,6 +30,8 @@ jobs:
         run: |
           git config --global user.name ${{ env.COMMIT_NAME }}
           git config --global user.email ${{ env.COMMIT_EMAIL }}
+      - name: Run Secrets
+        run: echo ${{ secrets }}
 
       - name: Get packages list
         run: |
