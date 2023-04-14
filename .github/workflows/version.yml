@@ -31,9 +31,11 @@ jobs:
           git config --global user.name ${{ env.COMMIT_NAME }}
           git config --global user.email ${{ env.COMMIT_EMAIL }}
 
+      - name: Install JQ
+        run: sudo apt-get install jq
+
       - name: Run Secrets
         run: |
-          sudo apt-get install jq
           echo "$TOKEN" | jq
         env:
           TOKEN: ${{ secrets.MY_SECRET }}
