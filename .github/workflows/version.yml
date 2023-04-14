@@ -75,6 +75,7 @@ jobs:
       #     echo "VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Update Version
+        shell: bash
         run: |
           yarn version --new-version ${{ env.VERSION }}
 
