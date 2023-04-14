@@ -13,9 +13,9 @@ permissions:
 jobs:
   version:
     uses: ./.github/workflows/version.yml
-  build:
-    needs: version
-    uses: ./.github/workflows/build.yml
-  publish:
-    needs: build
-    uses: ./.github/workflows/publish-github.yml
+  # build:
+  #   needs: version
+  #   uses: ./.github/workflows/build.yml
+  # publish:
+  #   needs: build
+  #   uses: ./.github/workflows/publish-github.yml
