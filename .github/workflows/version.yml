@@ -74,11 +74,7 @@ jobs:
 
       #     echo "VERSION=$VERSION" >> $GITHUB_ENV
 
-      # - name: Debug GitVersion
-      #   run: echo ${{ steps.gitversion.output.semVer }}
-
       - name: Update Version
-        shell: bash
         run: |
           yarn version --new-version ${{ env.VERSION }}
 
