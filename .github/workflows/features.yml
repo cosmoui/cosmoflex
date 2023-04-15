@@ -10,6 +10,11 @@ permissions:
   contents: read
   packages: write
 
+secrets:
+  MY_SECRET:
+    branches:
+      - "features/*"
+
 jobs:
   version:
     uses: ./.github/workflows/version.yml
