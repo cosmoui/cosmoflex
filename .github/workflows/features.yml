@@ -12,9 +12,9 @@ permissions:
 
 jobs:
   version:
-    uses: ./.github/workflows/version.yml
     env:
       REGISTRY: https://npm.pkg.github.com
+    uses: ./.github/workflows/version.yml
   build:
     needs: version
     uses: ./.github/workflows/build.yml
