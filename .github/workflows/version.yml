@@ -2,10 +2,10 @@ name: Version
 
 on:
   workflow_call:
-    env:
+    inputs:
       REGISTRY:
         required: true
-
+        type: string
 jobs:
   main:
     runs-on: ubuntu-latest
@@ -19,7 +19,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: lts/*
-          registry-url: ${{ env.REGISTRY }}
+          registry-url: ${{ inputs.REGISTRY }}
           always-auth: true
 
       - name: Get last commit author
@@ -47,7 +47,7 @@ jobs:
 
       - name: Filter packages by version
         run: |
-          packages=$(yarn search --json --registry=${{ env.REGISTRY }}--scope=@${{ env.ORGANIZATION_NAME }} | jq -r --arg $CURRENT_VERSION "${{ steps.extract_version.outputs.current_version }}" '.data.objects | .[] | select(.version == $CURRENT_VERSION) | .name')
+          packages=$(yarn search --json --registry=${{ inputs.REGISTRY }}--scope=@${{ env.ORGANIZATION_NAME }} | jq -r --arg $CURRENT_VERSION "${{ steps.extract_version.outputs.current_version }}" '.data.objects | .[] | select(.version == $CURRENT_VERSION) | .name')
           echo "::set-output name=filtered_packages::$packages"
         id: filter_packages
 
