@@ -47,7 +47,7 @@ jobs:
 
       - name: Filter packages by version
         run: |
-          packages=$(yarn search --json --registry=${{ inputs.REGISTRY }}--scope=@${{ env.ORGANIZATION_NAME }} | jq -r --arg $CURRENT_VERSION "${{ steps.extract_version.outputs.current_version }}" '.data.objects | .[] | select(.version == $CURRENT_VERSION) | .name')
+          packages=$(yarn npm search --json --registry=${{ inputs.REGISTRY }} --scope=@${{ env.ORGANIZATION_NAME }} | jq -r --arg CURRENT_VERSION "${{ env.CURRENT_VERSION }}" '.[] | select(.version == $CURRENT_VERSION) | .name')
           echo "::set-output name=filtered_packages::$packages"
         id: filter_packages
 
