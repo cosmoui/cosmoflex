@@ -32,12 +32,13 @@ jobs:
 
       - name: Get packages list
         shell: bash
-        run: |
-          curl -L \
-            -H "Accept: application/vnd.github+json" \
-            -H "Authorization: token $GIT_TOKEN"\
-            -H "X-GitHub-Api-Version: 2022-11-28" \
-            https://api.github.com/orgs/cosmoui/packages/npm/cosmoflex
+        run: curl -H "Authorization: token YOUR_PERSONAL_ACCESS_TOKEN" https://api.github.com/user
+        # run: |
+        #   curl -L \
+        #     -H "Accept: application/vnd.github+json" \
+        #     -H "Authorization: token $GIT_TOKEN"\
+        #     -H "X-GitHub-Api-Version: 2022-11-28" \
+        #     https://api.github.com/orgs/cosmoui/packages/npm/cosmoflex
         env:
           GIT_TOKEN: ${{ secrets.GIT_PKG_TOKEN }}
 
