@@ -31,6 +31,7 @@ jobs:
           git config --global user.email ${{ env.COMMIT_EMAIL }}
 
       - name: Get packages list
+        shell: bash
         run: |
           curl -L \
             -H "Accept: application/vnd.github+json" \
@@ -39,7 +40,6 @@ jobs:
             https://api.github.com/orgs/cosmoui/packages/npm/cosmoflex
         env:
           GIT_TOKEN: ${{ secrets.GIT_PKG_TOKEN }}
-
 
       - name: Set Version
         run: |
