@@ -2,9 +2,9 @@ name: Version
 
 on:
   workflow_call:
-  env:
-    REGISTRY:
-      required: true
+    env:
+      REGISTRY:
+        required: true
 
 jobs:
   main:
