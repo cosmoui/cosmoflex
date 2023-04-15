@@ -2,6 +2,9 @@ name: Version
 
 on:
   workflow_call:
+  env:
+    REGISTRY:
+      required: true
 
 jobs:
   main:
@@ -16,6 +19,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: lts/*
+          registry-url: ${{ env.REGISTRY }}
+          always-auth: true
 
       - name: Get last commit author
         run: |
