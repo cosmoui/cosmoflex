@@ -14,8 +14,7 @@ jobs:
   version:
     uses: ./.github/workflows/version.yml
     with:
-      env:
-        REGISTRY: https://npm.pkg.github.com
+      REGISTRY: https://npm.pkg.github.com
   build:
     needs: version
     uses: ./.github/workflows/build.yml
