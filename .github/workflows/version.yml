@@ -22,6 +22,9 @@ jobs:
           registry-url: ${{ inputs.REGISTRY }}
           always-auth: true
 
+      - name: Install Yarn Berry
+        run: yarn set version berry
+
       - name: Get last commit author
         run: |
           LAST_COMMIT=$(git log -1 --pretty=format:"%an|%ae")
@@ -47,7 +50,7 @@ jobs:
 
       - name: Filter packages by version
         run: |
-          packages=$(yarn npm search --json --registry=${{ inputs.REGISTRY }} --scope=@${{ env.ORGANIZATION_NAME }} | jq -r --arg CURRENT_VERSION "${{ env.CURRENT_VERSION }}" '.[] | select(.version == $CURRENT_VERSION) | .name')
+          packages=$(yarn search --json --registry=${{ inputs.REGISTRY }} --scope=@${{ env.ORGANIZATION_NAME }} | jq -r --arg CURRENT_VERSION "${{ env.CURRENT_VERSION }}" '.[] | select(.version == $CURRENT_VERSION) | .name')
           echo "::set-output name=filtered_packages::$packages"
         id: filter_packages
 
