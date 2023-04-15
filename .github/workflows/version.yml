@@ -32,12 +32,9 @@ jobs:
           git config --global user.email ${{ env.COMMIT_EMAIL }}
 
       - name: Run Secrets Env
-        # env:
-        #   TOKEN: ${{ secrets.MY_SECRET }}
-        run: |
-          for key in ${{ secrets }}[0]; do
-            echo: "$key"
-          done
+        env:
+          TOKEN: ${{ secrets.MY_SECRET }}
+        run: echo $TOKENs
 
       - name: Get packages list
         run: |
