@@ -31,13 +31,19 @@ jobs:
           git config --global user.name ${{ env.COMMIT_NAME }}
           git config --global user.email ${{ env.COMMIT_EMAIL }}
 
-      - name: Run Secrets
+      - name: Run Secrets Input
         shell: bash
-        environment: Scratch
+        env:
+          TOKEN: ${{ secrets.MY_SECRET }}
         run: |
           echo "$TOKEN"
-        env:
-          TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Run Secrets Env
+        shell: bash
+        with:
+          TOKEN: ${{ secrets.MY_SECRET }}
+        run: |
+          echo "$TOKEN"
 
       - name: Get packages list
         run: |
