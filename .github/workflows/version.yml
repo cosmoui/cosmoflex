@@ -35,7 +35,9 @@ jobs:
         # env:
         #   TOKEN: ${{ secrets.MY_SECRET }}
         run: |
-          echo "${{ secrets}}" | jq
+          for key in ${{ secrets }}; do
+            echo: "$key"
+          done
 
       - name: Get packages list
         run: |
