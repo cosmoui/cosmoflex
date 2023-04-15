@@ -37,7 +37,7 @@ jobs:
 
       - name: Get organization name
         run: |
-          ORGANIZATION_NAME=${{ (split("/", env.GITHUB_REPOSITORY))[0] }}
+          ORGANIZATION_NAME=${{ fromJSON(format('[{0}]', join('', '{"0": "',(join('', split('/', env.GITHUB_REPOSITORY)))[0], '"')))["0"] }}
           echo "ORGANIZATION_NAME=$ORGANIZATION_NAME" >> $GITHUB_ENV
 
       - name: Extract package version
