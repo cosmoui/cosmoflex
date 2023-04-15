@@ -10,10 +10,8 @@ permissions:
   contents: read
   packages: write
 
-secrets:
-  MY_SECRET:
-    branches:
-      - "features/*"
+env:
+  MY_SECRET: ${{ secrets.MY_SECRET }}
 
 jobs:
   version:
