@@ -22,6 +22,10 @@ jobs:
           registry-url: ${{ inputs.REGISTRY }}
           always-auth: true
 
+      - name: Install JQ
+        run: sudo apt-get install jq
+
+
       - name: Get last commit author
         run: |
           LAST_COMMIT=$(git log -1 --pretty=format:"%an|%ae")
