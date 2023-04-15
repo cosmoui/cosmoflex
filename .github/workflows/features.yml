@@ -12,6 +12,7 @@ permissions:
 
 jobs:
   version:
+    runs-on: ubuntu-latest
     env:
       REGISTRY: https://npm.pkg.github.com
     uses: ./.github/workflows/version.yml
