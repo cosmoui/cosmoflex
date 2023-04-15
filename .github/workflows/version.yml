@@ -47,14 +47,14 @@ jobs:
 
       - name: Filter packages by version
         run: |
-          packages=$(pnpm search --json --registry=${{ inputs.REGISTRY }} --scope=@${{ env.ORGANIZATION_NAME }} | jq -r --arg CURRENT_VERSION "${{ env.CURRENT_VERSION }}" '.[] | select(.version == $CURRENT_VERSION) | .name')
+          packages=$(npm search --json --registry=${{ inputs.REGISTRY }} --scope=@${{ env.ORGANIZATION_NAME }} | jq -r --arg CURRENT_VERSION "${{ env.CURRENT_VERSION }}" '.[] | select(.version == $CURRENT_VERSION) | .name')
           echo "::set-output name=filtered_packages::$packages"
         id: filter_packages
 
       - name: Update Version
         shell: bash
         run: |
-          pnpm version --new-version ${{env.CURRENT_VERSION}}-alpha.0 --no-git-tag-version
+          npm version --new-version ${{env.CURRENT_VERSION}}-alpha.0 --no-git-tag-version
 
       - name: Update repository
         run: |

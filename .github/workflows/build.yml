@@ -18,10 +18,10 @@ jobs:
           node-version: lts/*
 
       - name: Install Dependencies
-        run: pnpm ci
+        run: npm ci
 
       - name: Build Artifact
-        run: pnpm run build
+        run: npm run build
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
