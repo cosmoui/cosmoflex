@@ -25,6 +25,9 @@ jobs:
       - name: Install Yarn Berry
         run: yarn set version berry
 
+      - name: Import interactive-tools
+        run: yarn plugin import interactive-tools
+
       - name: Get last commit author
         run: |
           LAST_COMMIT=$(git log -1 --pretty=format:"%an|%ae")
