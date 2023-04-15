@@ -33,7 +33,7 @@ jobs:
       - name: Update Version
         shell: bash
         run: |
-          yarn version --new-version ${{ env.VERSION }}
+          yarn version preminor --preid alpha
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
