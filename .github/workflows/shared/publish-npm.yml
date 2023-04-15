@@ -27,7 +27,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: cosmoflex-artifact
-          
+
       - run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
