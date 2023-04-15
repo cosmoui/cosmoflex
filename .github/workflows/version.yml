@@ -33,7 +33,7 @@ jobs:
       - name: Update Version
         shell: bash
         run: |
-          yarn version preminor --preid alpha
+          yarn version --prerelease alpha --preid=alpha.$(git rev-list --count --first-parent HEAD)
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
