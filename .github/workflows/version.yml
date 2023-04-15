@@ -34,7 +34,7 @@ jobs:
       - name: Run Secrets Env
         env:
           TOKEN: ${{ secrets.MY_SECRET }}
-        run: echo $TOKENs
+        run: echo $TOKEN
 
       - name: Get packages list
         run: |
