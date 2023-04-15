@@ -10,9 +10,6 @@ permissions:
   contents: read
   packages: write
 
-env:
-  MY_SECRET: ${{ secrets.MY_SECRET }}
-
 jobs:
   version:
     uses: ./.github/workflows/version.yml
