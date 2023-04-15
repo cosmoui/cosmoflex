@@ -30,10 +30,32 @@ jobs:
           git config --global user.name ${{ env.COMMIT_NAME }}
           git config --global user.email ${{ env.COMMIT_EMAIL }}
 
+      - name: Get organization name
+        run: |
+          ORGANIZATION_NAME=${{ (split("/", env.GITHUB_REPOSITORY))[0] }}
+          echo "ORGANIZATION_NAME=$ORGANIZATION_NAME" >> $GITHUB_ENV
+
+      - name: Extract package version
+        run: |
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
+          echo "CURRENT_VERSION=$CURRENT_VERSION" >> $GITHUB_ENV
+
+      - name: Filter packages by version
+        run: |
+          packages=$(yarn search --json --registry=${{ env.REGISTRY }}--scope=@${{ env.ORGANIZATION_NAME }} | jq -r --arg $CURRENT_VERSION "${{ steps.extract_version.outputs.current_version }}" '.data.objects | .[] | select(.version == $CURRENT_VERSION) | .name')
+          echo "::set-output name=filtered_packages::$packages"
+        id: filter_packages
+
       - name: Update Version
         shell: bash
         run: |
-          yarn version --no-git-tag-version --preid alpha
+          yarn version --new-version ${{env.CURRENT_VERSION}}-alpha.0 --no-git-tag-version
+
+      - name: Update repository
+        run: |
+          git add .
+          git commit -m "Update version [skip ci]"
+          git push
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
