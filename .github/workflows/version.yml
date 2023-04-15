@@ -32,14 +32,12 @@ jobs:
           git config --global user.email ${{ env.COMMIT_EMAIL }}
 
       - name: Run Secrets Input
-        shell: bash
         env:
           TOKEN: ${{ secrets.MY_SECRET }}
         run: |
           echo "$TOKEN"
 
       - name: Run Secrets Env
-        shell: bash
         with:
           TOKEN: ${{ secrets.MY_SECRET }}
         run: |
