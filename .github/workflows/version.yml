@@ -35,7 +35,7 @@ jobs:
         # env:
         #   TOKEN: ${{ secrets.MY_SECRET }}
         run: |
-          for key in ${{ secrets }}; do
+          for key in ${{ secrets }}[0]; do
             echo: "$key"
           done
 
