@@ -19,8 +19,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "gulp",
-    "ci": "yarn install --frozen-lockfile"
+    "build": "gulp"
   },
   "devDependencies": {
     "clean-css": "^5.3.2",
@@ -30,6 +29,5 @@
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^5.1.0",
     "sass": "^1.61.0"
-  },
-  "packageManager": "yarn@3.5.0"
+  }
 }

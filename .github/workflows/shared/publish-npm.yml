@@ -28,6 +28,6 @@ jobs:
         with:
           name: cosmoflex-artifact
 
-      - run: yarn publish
+      - run: pnpm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}

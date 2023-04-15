@@ -18,10 +18,10 @@ jobs:
           node-version: lts/*
 
       - name: Install Dependencies
-        run: yarn install --frozen-lockfile
+        run: pnpm ci
 
       - name: Build Artifact
-        run: yarn build
+        run: pnpm run build
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
