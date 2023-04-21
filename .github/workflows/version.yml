@@ -1,7 +1,7 @@
 name: Version
 
 on:
-  worflow_call:
+  workflow_call:
     inputs:
       REGISTRY:
         required: true
