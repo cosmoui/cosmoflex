@@ -57,11 +57,11 @@ jobs:
         run: |
           npm version --new-version ${{env.CURRENT_VERSION}}-alpha.0 --no-git-tag-version
 
-      - name: Update repository
-        run: |
-          git add .
-          git commit -m "Update version [skip ci]"
-          git push
+      # - name: Update repository
+      #   run: |
+      #     git add .
+      #     git commit -m "Update version [skip ci]"
+      #     git push
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
