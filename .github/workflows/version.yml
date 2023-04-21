@@ -23,9 +23,6 @@ jobs:
           registry-url: ${{ inputs.REGISTRY }}
           always-auth: true
 
-      - name: Read npmrc
-        run: ls /tmp/.npmrc
-
       - name: Get last commit author
         run: |
           LAST_COMMIT=$(git log -1 --pretty=format:"%an|%ae")
