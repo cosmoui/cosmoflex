@@ -1,11 +1,12 @@
 name: Version
 
 on:
-  workflow_call:
+  worflow_call:
     inputs:
       REGISTRY:
         required: true
         type: string
+
 jobs:
   main:
     runs-on: ubuntu-latest
@@ -58,8 +59,6 @@ jobs:
 
       - name: Update repository
         run: |
-          git config user.name github-actions 
-          git config user.email github-actions@github.com
           git add .
           git commit -m "Update version [skip ci]"
           git push

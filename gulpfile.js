@@ -23,9 +23,6 @@ const compile = () =>
     .pipe(rename({ suffix: ".min" }))
     .pipe(gulp.dest(paths.dist))
 
-const copy = () =>
-  gulp
-    .src([`${paths.src}/**`])
-    .pipe(gulp.dest(paths.dist))
+const copy = () => gulp.src([`${paths.src}/**`]).pipe(gulp.dest(paths.dist))
 
 export default gulp.series(clean, gulp.parallel(compile, copy))
