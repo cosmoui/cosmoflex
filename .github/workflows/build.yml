@@ -7,10 +7,10 @@ jobs:
   main:
     runs-on: ubuntu-latest
     steps:
-      - name: Download Artifact
-        uses: actions/download-artifact@v3
+      - name: Checkout
+        uses: actions/checkout@v3
         with:
-          name: cosmoflex-version
+          persist-credentials: true
 
       - name: Setup NodeJS
         uses: actions/setup-node@v3
