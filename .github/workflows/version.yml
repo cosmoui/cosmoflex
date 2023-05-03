@@ -54,11 +54,6 @@ jobs:
           echo "PACKAGES=$PACKAGES" >> $GITHUB_ENV
         id: filter_packages
 
-      - name: Update Version
-        shell: bash
-        run: |
-          yarn version --new-version ${{env.CURRENT_VERSION}}-alpha.0 --no-git-tag-version
-
       # - name: Update repository
       #   run: |
       #     git add .
