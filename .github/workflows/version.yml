@@ -57,7 +57,7 @@ jobs:
       - name: Update Version
         shell: bash
         run: |
-          npm version --new-version ${{env.CURRENT_VERSION}}-alpha.0 --no-git-tag-version
+          yarn version --new-version ${{env.CURRENT_VERSION}}-alpha.0 --no-git-tag-version
 
       # - name: Update repository
       #   run: |
@@ -65,8 +65,8 @@ jobs:
       #     git commit -m "Update version [skip ci]"
       #     git push
 
-      # - name: Upload Artifact
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: cosmoflex-version
-      #     path: .
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: cosmoflex-version
+          path: .

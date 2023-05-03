@@ -2,6 +2,10 @@ name: Publish Github
 
 on:
   workflow_call:
+    inputs:
+      REGISTRY:
+        required: true
+        type: string
 
 jobs:
   main:
@@ -16,12 +20,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: lts/*
-          registry-url: https://npm.pkg.github.com/
+          registry-url: ${{ inputs.REGISTRY }}
 
       - name: List files
         run: ls
 
       - name: Publish package
-        run: npm publish
+        run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GIT_PKG_TOKEN }}
