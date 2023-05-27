@@ -15,11 +15,11 @@ jobs:
     uses: ./.github/workflows/version.yml
     with:
       REGISTRY: https://npm.pkg.github.com
-  build:
-    needs: version
-    uses: ./.github/workflows/build.yml
-  publish:
-    needs: build
-    uses: ./.github/workflows/publish-github.yml
-    with:
-      REGISTRY: https://npm.pkg.github.com
+  # build:
+  #   needs: version
+  #   uses: ./.github/workflows/build.yml
+  # publish:
+  #   needs: build
+  #   uses: ./.github/workflows/publish-github.yml
+  #   with:
+  #     REGISTRY: https://npm.pkg.github.com

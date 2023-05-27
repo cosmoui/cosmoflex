@@ -52,7 +52,6 @@ jobs:
         run: |
           PACKAGES=$(npm search --json --registry=${{ inputs.REGISTRY }} --scope=@${{ env.ORGANIZATION_NAME }} | jq -r --arg CURRENT_VERSION "${{ env.CURRENT_VERSION }}" '.[] | select(.version == "${{ env.CURRENT_VERSION }}") | .name')
           echo "PACKAGES=$PACKAGES" >> $GITHUB_ENV
-        id: filter_packages
 
       # - name: Update repository
       #   run: |
@@ -60,8 +59,8 @@ jobs:
       #     git commit -m "Update version [skip ci]"
       #     git push
 
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: cosmoflex-version
-          path: ./
+      # - name: Upload Artifact
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: cosmoflex-version
+      #     path: ./
