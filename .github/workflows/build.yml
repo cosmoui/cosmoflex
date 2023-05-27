@@ -28,13 +28,8 @@ jobs:
       - name: Build Artifact
         run: yarn build
 
-      - name: Cache Gradle packages
-        uses: actions/cache@v3
-        with:
-          path: ./node_modules
-
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
           name: cosmoflex
-          path: .
+          path: "dist"
